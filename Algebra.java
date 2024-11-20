@@ -21,7 +21,6 @@ public class Algebra {
 		System.out.println(sqrt(76123));
 	}
 
-	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 
 		for (int i = 0; i < x2; i++)
@@ -29,7 +28,6 @@ public class Algebra {
 		return x1;
 	}
 
-	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 
 		for (int i = 0; i < x2; i++)
@@ -37,7 +35,6 @@ public class Algebra {
 		return x1;
 	}
 
-	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 
 		int result = 0;
@@ -50,7 +47,6 @@ public class Algebra {
 		return result;
 	}
 
-	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 
 		int result = 1;
@@ -62,7 +58,6 @@ public class Algebra {
 		return result;
 	}
 
-	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
 
 		int result = 0;
@@ -77,7 +72,6 @@ public class Algebra {
 		}
 	}
 
-	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		int result = 0;
 		if ((times(div(x1, x2), x2) == x2)) {
@@ -88,7 +82,6 @@ public class Algebra {
 		return result;
 	}
 
-	// Returns the integer part of sqrt(x)
 	public static int sqrt(int x) {
 		int result = 0;
 		while (times(result, result) < x) {
@@ -98,6 +91,5 @@ public class Algebra {
 			return result;
 		} else
 			return (minus(result, 1));
-
 	}
 }
