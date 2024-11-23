@@ -82,14 +82,35 @@ public class Algebra {
 		return result;
 	}
 
-	public static int sqrt(int x) {
-		int result = 0;
-		while (times(result, result) < x) {
-			result++;
+	public static int abs(int x) {
+		if (x >= 0) {
+			return x;
+		} else {
+			return (times(x, -1));
 		}
+
+	}
+	public static int sqrt(int x){
+		int result = 1;
+		while(times(result , result) < x){
+			result = plus(result , 1);
+		}
+		return result;
+		}
+	
+
+	/*public static int sqrt(int x) {
+		int result = 0;
+		int epsilon = 1;
+		int g = div(x, 2);
+		int inf = 1;
+		int sup = x;
+		while (abs(minus(times(g , g), x)) < epsilon) {
+			g = div(minus(g, minus(times(g, g), x)), times(g, 2));
+		}
+		// return g;
 		if (times(result, result) == x) {
 			return result;
 		} else
-			return (minus(result, 1));
+			return (minus(result, 1));*/
 	}
-}
