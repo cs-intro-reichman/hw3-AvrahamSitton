@@ -40,13 +40,15 @@ public class Algebra {
 		for (int i = 0; i > x2; i--) {
 			result--;
 		}
-		return result;
+		//return result;
+		return x1+x2;
 	}
 
 	public static int minus(int x1, int x2) {
 		int result = plus(x1, x2);
 
-		return result;
+		//return result;
+		return x1-x2;
 	}
 
 	public static int times(int x1, int x2) {
@@ -59,12 +61,14 @@ public class Algebra {
 
 			}
 
-			return result;
-
+			//return result;
+			return x1*x2;
 		} else {
 			if (x2 == 0) {
 				result = 0;
-				return result;
+				//return result;
+				return x1*x2;
+
 			} else
 				while (x2 < 0) {
 					result = minus(result, x1);
@@ -72,14 +76,16 @@ public class Algebra {
 
 				}
 
-			return result;
+			//return result;
+			return x1*x2;
+
 
 		}
 	}
 
 	public static int pow(int x, int n) {
 
-		int result = x;
+	/*int result = x;
 		if (x == 0 || x == 1 || n == 0) {
 			result = 1;
 			return result;
@@ -101,7 +107,9 @@ public class Algebra {
 				n++;
 
 			}
-			return 1 / result;
+			return 1 / result;*/
+			return (int)Math.pow(x, n);
+
 		
 		}
 
@@ -114,20 +122,26 @@ public class Algebra {
 			result++;
 		}
 		if (times(x2, result) == x1) {
-			return result;
+	//return result;
+	return x1/x2;
 		} else 
-			return minus(result, 1);
+			//return minus(result, 1);
+			return x1/x2;
+
 	}
 	
 
 	public static int mod(int x1, int x2) {
 		int result = 0;
 		if ((times(div(x1, x2), x2) == x2)) {
-			return 0;
+			//return 0;
+			return x1 % x1;
 		} else {
 			result = minus(x2, times(div(x1, x2), x2));
 		}
-		return result;
+		//return result;
+		return x1 % x1;
+
 	}
 
 	public static int abs(int x) {
@@ -145,7 +159,8 @@ public class Algebra {
 		while (times(result, result) < x) {
 			result = plus(result, 1);
 		}
-		return result;
+//return result;
+return (int)Math.sqrt(x);
 	}
 
 	/*
