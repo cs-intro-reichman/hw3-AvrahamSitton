@@ -39,10 +39,10 @@ public class Anagram {
 			character = str.charAt(i);
 			asciiValue = (int) character;
 
-			if (asciiValue == ' ') {
+			/*if (asciiValue == ' ') {
 				continue;
 				
-			} else {
+			} else {*/
 				if (asciiValue > 'Z') {
 					standString += str.charAt(i);
 					
@@ -55,9 +55,10 @@ public class Anagram {
 
 				
 			}
+			return standString;
 		}
-		return standString;
-	}
+		//return standString;
+	//}
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
