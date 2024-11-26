@@ -1,5 +1,7 @@
 /** Functions for checking if a given string is an anagram. */
 public class Anagram {
+	//static int isSpace = 0;
+
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
 		System.out.println(isAnagram("silent", "listen")); // true
@@ -34,38 +36,39 @@ public class Anagram {
 		String standString = "";
 		char character = '\u0000';
 		int asciiValue = 0;
+		//isSpace = 0;
 
 		for (int i = 0; i < str.length(); i++) {
 			character = str.charAt(i);
 			asciiValue = (int) character;
 
-			/*if (asciiValue == ' ') {
+			if (asciiValue == ' ') {
 				continue;
-				
-			} else {*/
+				//isSpace++;
+
+			} else {
 				if (asciiValue > 'Z') {
 					standString += str.charAt(i);
-					
 
 				} else if (asciiValue > 'A') {
 					standString += (char) (character + ' ');
-				
+
 				} else
 					standString += str.charAt(i);
 
-				
 			}
-			return standString;
 		}
-		//return standString;
-	//}
+		return standString;
+	}
+	// return standString;
+	// }
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 
 		// boolean isAnagram = true;
-		String temp1 = preProcess(str1),
-				temp2 = preProcess(str2);
+		/*String temp1 = preProcess(str1),
+				temp2 = preProcess(str2);*/
 
 		int a = preProcess(str1).length(),
 				b = preProcess(str2).length(),
@@ -75,11 +78,11 @@ public class Anagram {
 			return false;
 		}
 		for (int i = 0; i < a; i++) {
-			sumAscii1 += (int) temp1.charAt(i);
-			sumAscii2 += (int) temp2.charAt(i);
-		
+			sumAscii1 += (int) preProcess(str1).charAt(i);
+			sumAscii2 += (int) preProcess(str2).charAt(i);
+
 		}
-	
+
 		return (sumAscii1 == sumAscii2);
 
 	}
@@ -88,7 +91,6 @@ public class Anagram {
 		str = preProcess(str);
 		String randomAnagram = "";
 		String removing = "";
-		
 
 		while (randomAnagram.length() != str.length()) {
 			int ranRange = (int) (Math.random() * str.length());
@@ -103,4 +105,3 @@ public class Anagram {
 		return randomAnagram;
 	}
 }
-
