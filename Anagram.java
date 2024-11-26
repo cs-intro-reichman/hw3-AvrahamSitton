@@ -41,23 +41,21 @@ public class Anagram {
 
 			if (asciiValue == ' ') {
 				continue;
-				// System.out.println(" " + asciiValue + " " + character + " " + standString);
+				
 			} else {
 				if (asciiValue > 'Z') {
 					standString += str.charAt(i);
-					// System.out.println(" " + asciiValue + " " + character + " " + standString);
+					
 
 				} else if (asciiValue > 'A') {
 					standString += (char) (character + ' ');
-					// System.out.println(" " + asciiValue + " " + character + " " + standString);
+				
 				} else
 					standString += str.charAt(i);
 
-				// asciiValue += 32;
-				// standString += (int) character;
+				
 			}
 		}
-		System.out.print(" the pre line " + str + " " + standString + " ");
 		return standString;
 	}
 
@@ -94,13 +92,9 @@ public class Anagram {
 		while (randomAnagram.length() != str.length()) {
 			int ranRange = (int) (Math.random() * str.length());
 			char character = (char) ranRange;
-			// System.out.println(ranRange + " " + character + " " +
-			// randomAnagram.length());
 			if (!removing.contains(String.valueOf(character))) {
 				removing += (char) character;
 				randomAnagram += str.charAt(ranRange);
-				// System.out.println(ranRange + " " + character + " " + randomAnagram.length()
-				// + " " + randomAnagram);
 
 			}
 
@@ -109,69 +103,3 @@ public class Anagram {
 	}
 }
 
-/*
- * str1 = preProcess(str1);
- * str2 = preProcess(str2);
- * for(int i = 0; i < str1.length(); i++){
- * for(int j = 0; j < str1.length(); j++){
- * if(str1.charAt(i) == str2.charAt(j)){
- * counterSteps++;
- * break;
- * }
- * }
- * }
- * if(counterSteps == str1.length()){
- * return true;
- * }
- * else{
- * return false;
- * }
- */
-
-// Returns a preprocessed version of the given string: all the letter characters
-// are converted
-// to lower-case, and all the other characters are deleted, except for spaces,
-// which are left
-// as is. For example, the string "What? No way!" becomes "whatnoway"
-
-// Returns a random anagram of the given string. The random anagram consists of
-// the same
-// characters as the given string, re-arranged in a random order.
-
-/*
- * for(int i = 0; i < str.length(); i++){
- * str = str.toLowerCase();
- * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z') || str.charAt(i) == ' '){
- * newStr += str.charAt(i);
- * }
- * }
- */
-// return preProcess(newStr);
-
-/*
- * private static String preProcess1(String str) {
- * String newStr = "";
- * for(int i = 0; i < str.length(); i++){
- * str = str.toLowerCase();
- * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z')){
- * newStr += str.charAt(i);
- * }
- * }
- * return newStr;
- * }
- */
-
-// Returns a random anagram of the given string. The random anagram consists of
-// the same
-// characters as the given string, re-arranged in a random order.
-/*
- * public static String randomAnagram(String str) {
- * String newStr = "";
- * while (str.length() > 0) {
- * int random = (int)(str.length() * Math.random());
- * newStr += str.charAt(random);
- * str = str.substring(0, random) + str.substring(random + 1);
- * }
- * return newStr;
- * }
- */
