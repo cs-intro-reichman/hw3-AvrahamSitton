@@ -44,6 +44,7 @@ public class LoanCalc {
 				preBalnce = endBalance(loan, rate, n, g),
 				currentBalance = preBalnce;
 		int maxIteration = (int) Math.pow(loan, 2);
+		iterationCounter = 0;
 		while (endBalance(loan, rate, n, g) > epsilon) {
 			if (preBalnce > epsilon && currentBalance < epsilon) {
 				return g - epsilon;
@@ -66,6 +67,7 @@ public class LoanCalc {
 		double inf = loan / n;
 		double mid = (sup + inf) / 2;
 		double currentB = endBalance(loan, rate, n, mid);
+		iterationCounter = 0;
 		while (sup - inf > epsilon) {
 			if (currentB > 0) {
 				inf = mid;

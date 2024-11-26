@@ -28,6 +28,7 @@ public class Anagram {
 		}
 		System.out.println(pass ? "test passed" : "test Failed");
 	}
+
 	public static String preProcess(String str) {
 
 		String standString = "";
@@ -44,11 +45,11 @@ public class Anagram {
 			} else {
 				if (asciiValue > 'Z') {
 					standString += str.charAt(i);
-					//System.out.println(" " + asciiValue + " " + character + " " + standString);
+					// System.out.println(" " + asciiValue + " " + character + " " + standString);
 
 				} else if (asciiValue > 'A') {
 					standString += (char) (character + ' ');
-					//System.out.println(" " + asciiValue + " " + character + " " + standString);
+					// System.out.println(" " + asciiValue + " " + character + " " + standString);
 				} else
 					standString += str.charAt(i);
 
@@ -56,38 +57,39 @@ public class Anagram {
 				// standString += (int) character;
 			}
 		}
-
+		System.out.print(" the pre line " + str + " " + standString + " ");
 		return standString;
 	}
+
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 
-		boolean isAnagram = true;
+		// boolean isAnagram = true;
+		String temp1 = preProcess(str1),
+				temp2 = preProcess(str2);
+
 		int a = preProcess(str1).length(),
 				b = preProcess(str2).length(),
 				sumAscii1 = 0,
 				sumAscii2 = 0;
 		if (a != b) {
-			isAnagram = false;
-		} else {
-			for (int i = 0; i < a; i++) {
-				sumAscii1 += (int) str1.charAt(i);
-				//System.out.print(" " + sumAscii1 + " ");
-				sumAscii2 += (int) str2.charAt(i);
-			//	System.out.print(" " + sumAscii2 + " ");
-			}
-			if ((sumAscii1 - sumAscii2) != 0) {
-				isAnagram = false;
-			} else
-				isAnagram = true;
+			return false;
 		}
-		return isAnagram;
+		for (int i = 0; i < a; i++) {
+			sumAscii1 += (int) temp1.charAt(i);
+			sumAscii2 += (int) temp2.charAt(i);
+		
+		}
+	
+		return (sumAscii1 == sumAscii2);
+
 	}
-public static String randomAnagram(String str) {
+
+	public static String randomAnagram(String str) {
 		str = preProcess(str);
 		String randomAnagram = "";
 		String removing = "";
-		// String newStr = "";
+		
 
 		while (randomAnagram.length() != str.length()) {
 			int ranRange = (int) (Math.random() * str.length());
@@ -106,71 +108,70 @@ public static String randomAnagram(String str) {
 		return randomAnagram;
 	}
 }
-		/*
-		 * str1 = preProcess(str1);
-		 * str2 = preProcess(str2);
-		 * for(int i = 0; i < str1.length(); i++){
-		 * for(int j = 0; j < str1.length(); j++){
-		 * if(str1.charAt(i) == str2.charAt(j)){
-		 * counterSteps++;
-		 * break;
-		 * }
-		 * }
-		 * }
-		 * if(counterSteps == str1.length()){
-		 * return true;
-		 * }
-		 * else{
-		 * return false;
-		 * }
-		 */
-	
 
-	// Returns a preprocessed version of the given string: all the letter characters
-	// are converted
-	// to lower-case, and all the other characters are deleted, except for spaces,
-	// which are left
-	// as is. For example, the string "What? No way!" becomes "whatnoway"
+/*
+ * str1 = preProcess(str1);
+ * str2 = preProcess(str2);
+ * for(int i = 0; i < str1.length(); i++){
+ * for(int j = 0; j < str1.length(); j++){
+ * if(str1.charAt(i) == str2.charAt(j)){
+ * counterSteps++;
+ * break;
+ * }
+ * }
+ * }
+ * if(counterSteps == str1.length()){
+ * return true;
+ * }
+ * else{
+ * return false;
+ * }
+ */
 
+// Returns a preprocessed version of the given string: all the letter characters
+// are converted
+// to lower-case, and all the other characters are deleted, except for spaces,
+// which are left
+// as is. For example, the string "What? No way!" becomes "whatnoway"
 
-	// Returns a random anagram of the given string. The random anagram consists of
-	// the same
-	// characters as the given string, re-arranged in a random order.
-	
-		/*
-		 * for(int i = 0; i < str.length(); i++){
-		 * str = str.toLowerCase();
-		 * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z') || str.charAt(i) == ' '){
-		 * newStr += str.charAt(i);
-		 * }
-		 * }
-		 */
-		// return preProcess(newStr);
-	
-	/*
-	 * private static String preProcess1(String str) {
-	 * String newStr = "";
-	 * for(int i = 0; i < str.length(); i++){
-	 * str = str.toLowerCase();
-	 * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z')){
-	 * newStr += str.charAt(i);
-	 * }
-	 * }
-	 * return newStr;
-	 * }
-	 */
+// Returns a random anagram of the given string. The random anagram consists of
+// the same
+// characters as the given string, re-arranged in a random order.
 
-	// Returns a random anagram of the given string. The random anagram consists of
-	// the same
-	// characters as the given string, re-arranged in a random order.
-	/*
-	 * public static String randomAnagram(String str) {
-	 * String newStr = "";
-	 * while (str.length() > 0) {
-	 * int random = (int)(str.length() * Math.random());
-	 * newStr += str.charAt(random);
-	 * str = str.substring(0, random) + str.substring(random + 1);
-	 * }
-	 * return newStr;
-	 * }
-	 */
+/*
+ * for(int i = 0; i < str.length(); i++){
+ * str = str.toLowerCase();
+ * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z') || str.charAt(i) == ' '){
+ * newStr += str.charAt(i);
+ * }
+ * }
+ */
+// return preProcess(newStr);
+
+/*
+ * private static String preProcess1(String str) {
+ * String newStr = "";
+ * for(int i = 0; i < str.length(); i++){
+ * str = str.toLowerCase();
+ * if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z')){
+ * newStr += str.charAt(i);
+ * }
+ * }
+ * return newStr;
+ * }
+ */
+
+// Returns a random anagram of the given string. The random anagram consists of
+// the same
+// characters as the given string, re-arranged in a random order.
+/*
+ * public static String randomAnagram(String str) {
+ * String newStr = "";
+ * while (str.length() > 0) {
+ * int random = (int)(str.length() * Math.random());
+ * newStr += str.charAt(random);
+ * str = str.substring(0, random) + str.substring(random + 1);
+ * }
+ * return newStr;
+ * }
+ */
