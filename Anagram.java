@@ -1,6 +1,6 @@
 /** Functions for checking if a given string is an anagram. */
 public class Anagram {
-	//static int isSpace = 0;
+	// static int isSpace = 0;
 
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
@@ -36,30 +36,34 @@ public class Anagram {
 		String standString = "";
 		char character = '\u0000';
 		int asciiValue = 0;
-		//isSpace = 0;
+		// isSpace = 0;
 
 		for (int i = 0; i < str.length(); i++) {
-			character = str.charAt(i);
-			asciiValue = (int) character;
+			asciiValue = (int) str.charAt(i);
+			// asciiValue = (int) character;
 
-			if (asciiValue == ' ') {
-				continue;
-				//isSpace++;
+			/*
+			 * if (asciiValue == ' ') {
+			 * //continue;
+			 * //isSpace++;
+			 * 
+			 * } else {
+			 */
+			if (asciiValue > 'Z') {
+				standString += str.charAt(i);
 
-			} else {
-				if (asciiValue > 'Z') {
-					standString += str.charAt(i);
+			} else if (asciiValue > 'A') {
+				standString += (char) (character + ' ');
 
-				} else if (asciiValue > 'A') {
-					standString += (char) (character + ' ');
+			} else
+				standString += str.charAt(i);
 
-				} else
-					standString += str.charAt(i);
-
-			}
 		}
 		return standString;
+
 	}
+	// return standString;
+	// }
 	// return standString;
 	// }
 
@@ -67,23 +71,25 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 
 		// boolean isAnagram = true;
-		/*String temp1 = preProcess(str1),
-				temp2 = preProcess(str2);*/
+		/*
+		 * String temp1 = preProcess(str1),
+		 * temp2 = preProcess(str2);
+		 */
 
-		int a = preProcess(str1).length(),
-				b = preProcess(str2).length(),
+		int a = (int) Math.abs(preProcess(str1).length() - preProcess(str2).length()),
+				b = preProcess(str1).length(),
+				c = preProcess(str2).length(),
 				sumAscii1 = 0,
 				sumAscii2 = 0;
-		if (a != b) {
-			return false;
-		}
-		for (int i = 0; i < a; i++) {
+		for (int i = 0; i < b; i++) {
 			sumAscii1 += (int) preProcess(str1).charAt(i);
+
+		}
+		for (int i = 0; i < c; i++) {
 			sumAscii2 += (int) preProcess(str2).charAt(i);
 
 		}
-
-		return (sumAscii1 == sumAscii2);
+		return (Math.abs(sumAscii1 - sumAscii2) == 0 || Math.abs(sumAscii1 - sumAscii2) == 32 * a);
 
 	}
 
