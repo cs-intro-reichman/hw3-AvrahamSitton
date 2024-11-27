@@ -8,6 +8,8 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare", "I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie", "Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle", "I am Lord Voldemort")); // true
+		System.out.println(preProcess("Hello World!").equals("hello world!"));
+		System.out.println(preProcess("Hello World!"));
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
@@ -31,61 +33,36 @@ public class Anagram {
 		System.out.println(pass ? "test passed" : "test Failed");
 	}
 
-	/*public static String preProcess(String str) {
-
-		String standString = "";
-		char character = '\u0000';
-		int asciiValue = 0;
-				//isSpace = 0;
-
-		for (int i = 0; i < str.length(); i++) {
-			character = str.charAt(i);
-			asciiValue = (int) character;
-			//if (asciiValue == ' ') {
-			//	standString += str.charAt(i);
-				// isSpace++;
-			//} else 
-			if (asciiValue > 'Z' || asciiValue == ' ') {
-				standString += str.charAt(i);
-
-			} else 
-			 if(asciiValue > 'A'){
-				if (asciiValue < 'Z') {
-					standString += (char) (character + ' ');
+	public static String preProcess(String str) {
+		StringBuilder standString = new StringBuilder();
 	
-				}
-
-			 }
-			 else if( asciiValue == ' '){
-			
-				continue;
+		for (int i = 0; i < str.length(); i++) {
+			char character = str.charAt(i);
+	
+			if (character >= 'A' && character <= 'Z') {
+				standString.append((char) (character + 32));
+			} else {
+				standString.append(character);
 			}
-			standString += str.charAt(i);
-			// (char) isSpace +
 		}
-		//standString += str.charAt(i);
-		return standString;
-
+	
+		return standString.toString();
 	}
-	// return standString;
-	// }
-	// return standString;
-	// }
+	
+	
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 
 		// boolean isAnagram = true;
-		
-		  String temp1 = preProcess(str1),
-		  temp2 = preProcess(str2);
 
-		 
+		String temp1 = preProcess(str1),
+				temp2 = preProcess(str2);
 
 		// int a = (int) str1.charAt(0), // (int) Math.abs(preProcess(str1).length() -
 		// preProcess(str2).length()),
 		// b = (int) str2.charAt(0),
-	 	int c = preProcess(str1).length(),
+		int c = preProcess(str1).length(),
 				d = preProcess(str2).length(),
 				sumAscii1 = 0,
 				sumAscii2 = 0;
@@ -103,58 +80,8 @@ public class Anagram {
 		return ((sumAscii1 - sumAscii2 == 0));
 
 	}
-*/
-public static boolean isAnagram(String str1, String str2) {
-	str1 = preProcess(str1);
-	str2 = preProcess(str2);
-	String newStr1 ="";
-	String newStr2 ="";
-	String temp = "abcdefghijklmnopqrstuvwxyz";
-	for (int i = 0; i<str1.length(); i++) // return string1 without the spaces and the nuber of space in the string
-	{
-		if(temp.indexOf(str1.charAt(i))!= -1)
-		{
-			newStr1 = newStr1 + str1.charAt(i);
-		}
 
-	}
-	for (int j = 0; j<str2.length(); j++) // return string2 without the spaces and the nuber of space in the string
-	{
-		if(temp.indexOf(str2.charAt(j))!= -1)
-		{
-			newStr2 = newStr2 + str2.charAt(j);
-		}
-	}
-	if (newStr1.length()!=newStr2.length()) {return false;} // if the length is diffrent - the string cannoy be anagram
-	for (int i=0; i<newStr1.length(); i++)
-	{
-		char c = newStr1.charAt(i);
-		int str2Index = newStr2.indexOf(c);
-		if (str2Index == -1) {
-			return false;
-		}
-		newStr2 = newStr2.substring(0, str2Index) + newStr2.substring(str2Index + 1);
-	}
-	return true;
-}
-   
-// Returns a preprocessed version of the given string: all the letter characters are converted
-// to lower-case, and all the other characters are deleted, except for spaces, which are left
-// as is. For example, the string "What? No way!" becomes "what no way"
-public static String preProcess(String str) {
-	String newString = "";
-	int sLength = str.length();
-	str = str.toLowerCase();
-	String test = "abcdefghijklmnopqrstuvwxyz";
-	for (int i=0; i<sLength; i++)
-	{
-		if (test.indexOf(str.charAt(i))!= -1 || str.charAt(i) == ' ')
-		{
-			newString =newString + str.charAt(i);
-		}
-	}
-	return newString;
-} 
+	
 	public static String randomAnagram(String str) {
 		str = preProcess(str);
 		String randomAnagram = "";
