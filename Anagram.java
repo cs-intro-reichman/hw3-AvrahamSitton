@@ -1,18 +1,13 @@
 import java.util.Random;
 
-import javax.print.DocFlavor.STRING;
-
+/** Functions for checking if a given string is an anagram. */
 public class Anagram {
 	public static void main(String args[]) {
-		// Tests the isAnagram function.
+		// Tests the isAnagram function. 
 		System.out.println(isAnagram("silent","listen"));  // true
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
-
-		// Tests the preProcess function.
-		System.out.println(preProcess("What? No way!!!"));
-		
 		// Tests the randomAnagram function.
 		System.out.println("silent and " + randomAnagram("silent") + " are anagrams.");
 		
@@ -28,64 +23,89 @@ public class Anagram {
 		}
 		System.out.println(pass ? "test passed" : "test Failed");
 	}  
-	public static String RemoveSpaces(String str) {
-		String str1 = "";
-		for (int i = 0; i < str.length(); i++){
-			if (str.charAt(i) != 32) {
-				str1 += str.charAt(i);
-			}
-		}
-		return str1;
-	} 
+
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		str1 = RemoveSpaces(preProcess(str1));
-		str2 =RemoveSpaces(preProcess(str2));
-		if (str1.length() != str2.length())
-			return false;
-		else{
-			while (!str1.isEmpty()) {
-				char c = str1.charAt(0);
-				int index = str2.indexOf(c);
-				if (index == -1){
-					return false;
-				}
-				str1 = str1.substring(1);
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+		String newStr1 ="";
+		String newStr2 ="";
+		String temp = "abcdefghijklmnopqrstuvwxyz";
+		for (int i = 0; i<str1.length(); i++) // return string1 without the spaces and the nuber of space in the string
+		{
+			if(temp.indexOf(str1.charAt(i))!= -1)
+			{
+				newStr1 = newStr1 + str1.charAt(i);
+			}
+
+		}
+		for (int j = 0; j<str2.length(); j++) // return string2 without the spaces and the nuber of space in the string
+		{
+			if(temp.indexOf(str2.charAt(j))!= -1)
+			{
+				newStr2 = newStr2 + str2.charAt(j);
 			}
 		}
-			return str1.isEmpty();
+		if (newStr1.length()!=newStr2.length()) {return false;} // if the length is diffrent - the string cannoy be anagram
+		for (int i=0; i<newStr1.length(); i++)
+		{
+			char c = newStr1.charAt(i);
+			int str2Index = newStr2.indexOf(c);
+			if (str2Index == -1) {
+				return false;
+			}
+			newStr2 = newStr2.substring(0, str2Index) + newStr2.substring(str2Index + 1);
+		}
+		return true;
 	}
-	 
+	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "what no way"
-
-	// return str.toLowerCase().replaceAll("[^a-z]", " ");
 	public static String preProcess(String str) {
-		String str2 = "";
-		for (int i = 0; i < str.length(); i++){
-			if ((str.charAt(i) < 65 || str.charAt(i) > 122) && str.charAt(i) != 32) {
-			continue;
-			}
-			else{
-				str2 += str.charAt(i);
+		String newString = "";
+		int sLength = str.length();
+		str = str.toLowerCase();
+		String test = "abcdefghijklmnopqrstuvwxyz";
+		for (int i=0; i<sLength; i++)
+		{
+			if (test.indexOf(str.charAt(i))!= -1 || str.charAt(i) == ' ')
+			{
+				newString =newString + str.charAt(i);
 			}
 		}
-		return str2.toLowerCase();
+		return newString;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
+		
 		str = preProcess(str);
-		StringBuilder result = new StringBuilder();
-		Random random = new Random();
-		while (!str.isEmpty()) {
-			int index = random.nextInt(str.length());
-			result.append(str.charAt(index));
-			str = str.substring(0, index) + str.substring(index + 1);
+		String temp = "abcdefghijklmnopqrstuvwxyz";
+		String newSrt = "";
+		for (int i = 0; i<str.length(); i++) // return string without the spaces and the nuber of space in the string
+		{
+			if(temp.indexOf(str.charAt(i))!= -1)
+			{
+				newSrt = newSrt + str.charAt(i);
+			}
+
 		}
-		return result.toString();
+		str = newSrt;
+		String sRandom = "";
+		int random =0;
+		for (int i=0; i<str.length(); i++)
+		{
+			//if(temp.indexOf(newSrt.charAt(i))!= -1)
+			//{
+				random = (int) (Math.random() * newSrt.length());
+				sRandom = sRandom + newSrt.charAt(random);
+				newSrt = newSrt.substring(0, random) + newSrt.substring(random + 1);
+
+			//}
+		}
+		return sRandom;
 	}
 }//Functions for checking if a given string is an anagram. */
 /*public class Anagram {
